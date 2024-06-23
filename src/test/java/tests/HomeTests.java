@@ -10,4 +10,6 @@ public class HomeTests extends ApplicationManager {
     public void test(){
         HomePage homePage = new HomePage(getDriver());
     }
+
+
 }

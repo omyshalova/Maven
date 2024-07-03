@@ -19,4 +19,6 @@ public class FormsPage extends BasePage{
         btnPracticeForm.click();
         return new AutomationPracticeFormPage(driver);
     }
+
+
 }

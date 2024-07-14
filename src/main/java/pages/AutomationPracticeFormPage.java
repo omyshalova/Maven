@@ -19,7 +19,6 @@ public class AutomationPracticeFormPage extends BasePage{
         PageFactory.initElements(
                 new AjaxElementLocatorFactory(driver,10), this);
     }
-
     @FindBy(id = "firstName")
     WebElement fieldFirstName;
     @FindBy(id = "lastName")
@@ -38,13 +37,13 @@ public class AutomationPracticeFormPage extends BasePage{
     WebElement fieldState;
     @FindBy(id = "react-select-4-input")
     WebElement fieldCity;
-    @FindBy(xpath = "//button[@id='submit']")
+    @FindBy(xpath = "//button[text()='Submit']")
     WebElement btnSubmit;
-
-    @FindBy(id = "closeLargeModel")
-    WebElement btnCloseModel;
+    //======================================
+    @FindBy(id = "closeLargeModal")
+    WebElement btnCloseModal;
     @FindBy(id = "example-modal-sizes-title-lg")
-    WebElement textThanks;
+    WebElement textThanksFor;
 
     public AutomationPracticeFormPage typeStudentForm(StudentDTO student){
         hideFooter();
@@ -53,20 +52,24 @@ public class AutomationPracticeFormPage extends BasePage{
         fieldEmail.sendKeys(student.getEmail());
         clickGender(student.getGender());
         fieldMobileNumber.sendKeys(student.getMobile());
+
+        //fieldDateOfBirth.clear();
+        //fieldDateOfBirth.sendKeys(student.getDateOfBirth());
         typeFieldDateOfBirth(student.getDateOfBirth());
         typeFieldSubjects(student.getSubjects());
         typeHobbies(student.getHobbies());
         fieldCurrentAddress.sendKeys(student.getCurrentAddress());
+        //================================
         fieldState.sendKeys(student.getState());
         fieldState.sendKeys(Keys.ENTER);
         fieldCity.sendKeys(student.getCity());
         fieldCity.sendKeys(Keys.ENTER);
+
         return this;
     }
-
     public AutomationPracticeFormPage clickBtnSubmit(){
         btnSubmit.click();
-      return this;
+        return this;
     }
 
     private void typeHobbies(List<Hobbies> hobbies) {
@@ -109,9 +112,13 @@ public class AutomationPracticeFormPage extends BasePage{
         WebElement elementGender = driver.findElement(By.xpath(gender.getLocator()));
         elementGender.click();
     }
-
-    public boolean isElementPresent_btnCloseModel(){
-        return isElementPresentWithWait(textThanks, 5);
+    public boolean isElementPresent_btnCloseModal(){
+        return isElementPresentWithWait(textThanksFor, 20);
     }
+
+    public boolean isTextToBePresent_textThanksFor(){
+        return isTextToBePresent(textThanksFor, "Thanks for submitting the form", 5);
+    }
+
 
 }

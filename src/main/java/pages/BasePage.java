@@ -24,4 +24,9 @@ public class BasePage {
         return new WebDriverWait(driver, Duration.ofSeconds(time))
                 .until(ExpectedConditions.invisibilityOf(element));
     }
+
+    public boolean isTextToBePresent(WebElement element, String text, int time){
+        return new WebDriverWait(driver, Duration.ofSeconds(time))
+                .until(ExpectedConditions.textToBePresentInElement(element, text));
+    }
 }

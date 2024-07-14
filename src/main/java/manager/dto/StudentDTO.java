@@ -82,7 +82,6 @@ public class StudentDTO {
     public String getState() {
         return state;
     }
-
     public String getCity(){
         return city;
     }
